@@ -5,9 +5,9 @@ import random
 pyDatalog.create_terms('arrSum, N, AVS, arrRandom, arrRandom2, arrRandomMedian')
 
 arrSum[N] = N + arrSum[N-1]
-arrSum[0] = 1
+arrSum[1] = 1
 
-print(arrSum[200]==N)
+print(arrSum[100]==N)
 
 # Среднее значение ряда
 AVS[N] = (N + 1)/2
