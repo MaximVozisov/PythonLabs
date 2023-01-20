@@ -1,39 +1,39 @@
-# -*- coding: utf_8 -*-
+# -*- coding: cp1251 -*-
 
 from encodings import utf_8
 import csv
 import random
 from MapAndReduce import MyMap, MyReduce
-FILENAME: str = "DataSet.csv" # файл с изначальными данными
-OUTPUTFILE: str = "NewDataSet.csv" # файл с преобразованными данными
+FILENAME: str = "DataSet.csv" # С„Р°Р№Р» СЃ РёР·РЅР°С‡Р°Р»СЊРЅС‹РјРё РґР°РЅРЅС‹РјРё
+OUTPUTFILE: str = "NewDataSet.csv" # С„Р°Р№Р» СЃ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅС‹РјРё РґР°РЅРЅС‹РјРё
 
 def FillDataSet() -> list:
-    breed: list = ["Мопс", "Пудель", "Долматинец", "Чау-чау", "Бигль", "Доберман"]
-    name: list = ["Олег", "Лео", "Барни", "Тайсон", "Локи", "Нора", "Рекс", "Рокки"]
-    country: list = ["(Россия)", "(Франция)", "(Англия)", "(США)", "(Китай)", "(Нидерланды)", "(Швеция)"]
+    breed: list = ["РњРѕРїСЃ", "РџСѓРґРµР»СЊ", "Р”РѕР»РјР°С‚РёРЅРµС†", "Р§Р°Сѓ-С‡Р°Сѓ", "Р‘РёРіР»СЊ", "Р”РѕР±РµСЂРјР°РЅ"]
+    name: list = ["РћР»РµРі", "Р›РµРѕ", "Р‘Р°СЂРЅРё", "РўР°Р№СЃРѕРЅ", "Р›РѕРєРё", "РќРѕСЂР°", "Р РµРєСЃ", "Р РѕРєРєРё"]
+    country: list = ["(Р РѕСЃСЃРёСЏ)", "(Р¤СЂР°РЅС†РёСЏ)", "(РђРЅРіР»РёСЏ)", "(РЎРЁРђ)", "(РљРёС‚Р°Р№)", "(РќРёРґРµСЂР»Р°РЅРґС‹)", "(РЁРІРµС†РёСЏ)"]
     Dogs = list()
     i: int = 0
     countDog: int = 40
-    Dogs.append(["Собака", "Возраст"])
+    Dogs.append(["РЎРѕР±Р°РєР°", "Р’РѕР·СЂР°СЃС‚"])
     while i < countDog:
         randomDog = breed[random.randint(0, len(breed) - 1)] + " " + name[random.randint(0, len(name) - 1)] + " " + country[random.randint(0, len(country) - 1)]
         Dogs.append([randomDog, random.randint(0,11)])
         i += 1
     return Dogs
 
-def WriteInCSV(dataSet: list, fileName: str): # Запись файла из списка 
+def WriteInCSV(dataSet: list, fileName: str): # Р—Р°РїРёСЃСЊ С„Р°Р№Р»Р° РёР· СЃРїРёСЃРєР° 
     with open(fileName, 'w', newline="") as file:
         writer = csv.writer(file, delimiter=',');
         writer.writerows(dataSet)
 
-def WriteInCSVFromDict(dataSet: list, fileName: str): #Запись файла из словаря
+def WriteInCSVFromDict(dataSet: list, fileName: str): #Р—Р°РїРёСЃСЊ С„Р°Р№Р»Р° РёР· СЃР»РѕРІР°СЂСЏ
     with open(fileName, 'w', newline="") as file:
         columns = list(dataSet[0].keys())
         writer = csv.DictWriter(file, fieldnames=columns, delimiter=',');
         writer.writeheader()
         writer.writerows(dataSet)
 
-def ReadFromCSV(fileName: str) -> list: # Чтение файла
+def ReadFromCSV(fileName: str) -> list: # Р§С‚РµРЅРёРµ С„Р°Р№Р»Р°
     with open(fileName, 'r', newline="") as file:
         reader = csv.DictReader(file)
         newListDict = list()
@@ -41,27 +41,27 @@ def ReadFromCSV(fileName: str) -> list: # Чтение файла
             newListDict.append(dict)
     return newListDict
 
-def SplitDog(originalDict: dict) -> dict: #Разделение первого столбца на 3 новых
+def SplitDog(originalDict: dict) -> dict: #Р Р°Р·РґРµР»РµРЅРёРµ РїРµСЂРІРѕРіРѕ СЃС‚РѕР»Р±С†Р° РЅР° 3 РЅРѕРІС‹С…
     newDict = dict()
-    strs = originalDict["Собака"].split(' ')
-    newDict["Порода"] = strs[0]
-    newDict["Имя"] = strs[1]
-    newDict["Родина"] = strs[2]
-    newDict["Возраст"] = originalDict["Возраст"]
+    strs = originalDict["РЎРѕР±Р°РєР°"].split(' ')
+    newDict["РџРѕСЂРѕРґР°"] = strs[0]
+    newDict["РРјСЏ"] = strs[1]
+    newDict["Р РѕРґРёРЅР°"] = strs[2]
+    newDict["Р’РѕР·СЂР°СЃС‚"] = originalDict["Р’РѕР·СЂР°СЃС‚"]
     return newDict
 
 
 def GetSumAgeDog(originalDict: dict, originalDict2: dict) ->dict:
     newDict = dict()
-    newDict["Возраст"] = int(originalDict["Возраст"]) + int(originalDict2["Возраст"])
+    newDict["Р’РѕР·СЂР°СЃС‚"] = int(originalDict["Р’РѕР·СЂР°СЃС‚"]) + int(originalDict2["Р’РѕР·СЂР°СЃС‚"])
     return newDict
 
-WriteInCSV(FillDataSet(), FILENAME) # заполнение таблицы
-# Задание 1: Разделение столбца Собака на 3 новых столбца с помощью map в новый файл csv
+WriteInCSV(FillDataSet(), FILENAME) # Р·Р°РїРѕР»РЅРµРЅРёРµ С‚Р°Р±Р»РёС†С‹
+# Р—Р°РґР°РЅРёРµ 1: Р Р°Р·РґРµР»РµРЅРёРµ СЃС‚РѕР»Р±С†Р° РЎРѕР±Р°РєР° РЅР° 3 РЅРѕРІС‹С… СЃС‚РѕР»Р±С†Р° СЃ РїРѕРјРѕС‰СЊСЋ map РІ РЅРѕРІС‹Р№ С„Р°Р№Р» csv
 dataSet: list = ReadFromCSV(FILENAME)
 newDataSet: list = MyMap(SplitDog, dataSet)
 WriteInCSVFromDict(newDataSet, OUTPUTFILE)
-# Задание 2: Просуммировать возраст собак и найти их среднее значение с помощью reduce
-summ = MyReduce(GetSumAgeDog, dataSet)["Возраст"]
+# Р—Р°РґР°РЅРёРµ 2: РџСЂРѕСЃСѓРјРјРёСЂРѕРІР°С‚СЊ РІРѕР·СЂР°СЃС‚ СЃРѕР±Р°Рє Рё РЅР°Р№С‚Рё РёС… СЃСЂРµРґРЅРµРµ Р·РЅР°С‡РµРЅРёРµ СЃ РїРѕРјРѕС‰СЊСЋ reduce
+summ = MyReduce(GetSumAgeDog, dataSet)["Р’РѕР·СЂР°СЃС‚"]
 summ = summ / 40
-print("Средний возраст собак", summ)
+print("РЎСЂРµРґРЅРёР№ РІРѕР·СЂР°СЃС‚ СЃРѕР±Р°Рє", summ)
