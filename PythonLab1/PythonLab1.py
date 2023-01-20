@@ -5,29 +5,29 @@ from pprint import pprint
 from animal import Animal, AnimalSerialize, AnimalDeserialize
 from mammal import Mammal, MammalSerialize, MammalDeserialize
 from dog import Dog, DogSerialize, DogDeserialize
-from cat import * #импортируется всё
+from cat import * #РёРјРїРѕСЂС‚РёСЂСѓРµС‚СЃСЏ РІСЃС‘
 
-newAnimal = Animal("Джастин",7,"М")
-newMammal = Mammal("Лео", 4, "М", "Обезьяна")
-newDog = Dog("Жанна",7,"Ж","Пудель")
-newCat = Cat("Алиса",10,"Ж","Манул")
+newAnimal = Animal("Р”Р¶Р°СЃС‚РёРЅ",7,"Рњ")
+newMammal = Mammal("Р›РµРѕ", 4, "Рњ", "РћР±РµР·СЊСЏРЅР°")
+newDog = Dog("Р–Р°РЅРЅР°",7,"Р–","РџСѓРґРµР»СЊ")
+newCat = Cat("РђР»РёСЃР°",10,"Р–","РњР°РЅСѓР»")
 print(newAnimal)
 print(newMammal)
 print(newDog)
 print(newCat)
-#Сериализация/десериализация Animal
+#РЎРµСЂРёР°Р»РёР·Р°С†РёСЏ/РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёСЏ Animal
 AnimalSerialize(newAnimal,"primer.json")
 newAnimal2 = AnimalDeserialize("primer.json")
 pprint(newAnimal2.__dict__)
-#Сериализация/десериализация Mammal
+#РЎРµСЂРёР°Р»РёР·Р°С†РёСЏ/РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёСЏ Mammal
 MammalSerialize(newMammal,"primer2.json")
 newMammal2 = MammalDeserialize("primer2.json")
 pprint(newMammal2.__dict__)
-#Сериализация/десериализация Dog
+#РЎРµСЂРёР°Р»РёР·Р°С†РёСЏ/РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёСЏ Dog
 DogSerialize(newDog,"primer3.json")
 newDog2 = DogDeserialize("primer3.json")
 pprint(newDog2.__dict__)
-#Сериализация/десериализация Cat
+#РЎРµСЂРёР°Р»РёР·Р°С†РёСЏ/РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёСЏ Cat
 CatSerialize(newCat,"primer.json")
 newCat2 = CatDeserialize("primer.json")
 pprint(newCat2.__dict__)
