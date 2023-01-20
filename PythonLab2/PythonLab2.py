@@ -1,3 +1,5 @@
+# -*- coding: cp1251 -*-
+
 from pyDatalog import pyDatalog 
 import random
 
