@@ -1,24 +1,23 @@
 # -*- coding: utf_8 -*-
 
 import json
-class Animal:
-    def __init__(self, name = "", age = 0, gender = ""):
-        self.name = name
-        self.age = age
-        self.gender = gender
-    def __repr__(self): # отображение объекта в режиме отладки
+from animal import Animal
+class Mammal(Animal):
+    def __init__(self, name = "",age = 0,gender = "", view = ""):
+        super().__init__(name, age, gender)
+        self.view = view
+    def __repr__(self): # РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕР±СЉРµРєС‚Р° РІ СЂРµР¶РёРјРµ РѕС‚Р»Р°РґРєРё
         return self.__str__()
     def __str__(self):
         return str(self.__dict__)
-    
 
-def AnimalSerialize(animal,path): #Сериализация
+def MammalSerialize(mammal,path):
     with open(path,"w") as outfile:
-        json.dump(animal.__dict__,outfile)
-def AnimalDeserialize(pas): #Десериализация
+        json.dump(mammal.__dict__,outfile)
+def MammalDeserialize(pas):
     def Decode(obj):
-        if "name" in obj:
-            return Animal(obj["name"],obj["age"],obj["gender"])
+        if "view" in obj:
+            return Mammal(obj["name"],obj["age"],obj["gender"],obj["view"])
     with open(pas) as json_file:
         J = json.load(json_file)
     return Decode(J)
