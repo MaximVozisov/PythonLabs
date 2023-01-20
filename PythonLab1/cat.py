@@ -5,7 +5,7 @@ from animal import Animal
 from mammal import Mammal
 class Cat(Mammal):
     def __init__(self, name = "", age = 0, gender = "", viewCat = ""):
-        super().__init__(name,age,gender,"Кошка")
+        super().__init__(name,age,gender,"РљРѕС€РєР°")
         self.viewCat = viewCat
     def __repr__(self): 
         return self.__str__()
