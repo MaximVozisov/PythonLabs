@@ -1,5 +1,6 @@
-# -*- coding: cp1251 -*-
+# -*- coding: utf_8 -*-
 
+from encodings import utf_8
 import csv
 import random
 from MapAndReduce import MyMap, MyReduce

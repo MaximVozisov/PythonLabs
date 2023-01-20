@@ -1,4 +1,4 @@
-# -*- coding: cp1251 -*-
+# -*- coding: utf_8 -*-
 
 def MyMap(func, originalList: list) -> list: #Реализация Map
     newList = list()

@@ -1,4 +1,4 @@
-# -*- coding: cp1251 -*-
+# -*- coding: utf_8 -*-
 
 import json
 from animal import Animal

@@ -1,4 +1,4 @@
-# -*- coding: cp1251 -*-
+# -*- coding: utf_8 -*-
 
 from pyDatalog import pyDatalog 
 import random
