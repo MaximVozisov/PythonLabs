@@ -1,12 +1,12 @@
-# -*- coding: utf_8 -*-
+# -*- coding: cp1251 -*-
 
-def MyMap(func, originalList: list) -> list: #Реализация Map
+def MyMap(func, originalList: list) -> list: #Р РµР°Р»РёР·Р°С†РёСЏ Map
     newList = list()
     for object in originalList:
         newList.append(func(object))
     return newList
 
-def MyReduce(func, originalList: list): #Реализация Reduce
+def MyReduce(func, originalList: list): #Р РµР°Р»РёР·Р°С†РёСЏ Reduce
     i: int = 2
     length: int = len(originalList)
     result = func(originalList[0], originalList[1])
